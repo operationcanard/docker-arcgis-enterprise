@@ -1,5 +1,5 @@
-From geoceg/ubuntu-server:latest
-LABEL maintainer="b.wilson@geo-ceg.org"
+FROM geoceg/ubuntu-server:latest
+LABEL maintainer="raphael.dantzer@earthcube.eu"
 ENV REFRESHED_AT 2017-12-27
 ENV ESRI_VERSION 10.6
 
