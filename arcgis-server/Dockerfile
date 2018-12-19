@@ -1,7 +1,7 @@
 FROM geoceg/ubuntu-server:latest
 LABEL maintainer="raphael.dantzer@earthcube.eu"
 ENV REFRESHED_AT 2017-12-27
-ENV ESRI_VERSION 10.4
+ENV ESRI_VERSION 10.5
 
 EXPOSE 6080 6443
 # If you are not using a Docker network to connect containers
@@ -18,7 +18,7 @@ ENV HOME /home/arcgis
 ADD *.prvc ${HOME}
 
 # "ADD" knows how to unpack the tar file directly into the docker image.
-ADD ArcGIS_*_Linux_104*.tar.gz ${HOME}
+ADD ArcGIS_*_Linux_105*.tar.gz ${HOME}
 
 # Add the script that can create the initial admin user and site
 # I can't actually run the create_new_site.py here because it will have

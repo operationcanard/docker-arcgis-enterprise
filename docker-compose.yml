@@ -5,6 +5,9 @@ services:
     container_name: server
     build: arcgis-server
     image: geoceg/arcgis-server
+    environment:
+      AGS_USERNAME: ${ARCGIS_USERNAME}
+      AGS_PASSWORD: ${ARCGIS_PASSWORD}
     ports:
       - "6080:6080"
       - "6443:6443"
@@ -16,19 +19,21 @@ services:
       - arcgis.net
 
 
-#  portal:
-#    container_name: portal
-#    build: portal-for-arcgis
-#    image: geoceg/portal-for-arcgis
-#    ports:
-#      - "7080:7080"
-#      - "7443:7443"
-#    volumes:
-#      - "${SERVER_ROOT}/arcgisportal:/home/arcgis/portal/usr/arcgisportal"
-#    networks:
-#      - arcgis.net
-#
-#
+  portal:
+    container_name: portal
+    build: portal-for-arcgis
+    image: geoceg/portal-for-arcgis
+    ports:
+      - "7080:7080"
+      - "7443:7443"
+    volumes:
+      - "${SERVER_ROOT}/arcgisportal:/home/arcgis/portal/usr/arcgisportal"
+    networks:
+      - arcgis.net
+    depends_on:
+      - server
+
+
 #  web-adaptor:
 #    container_name: web-adaptor
 #    build: web-adaptor
@@ -43,15 +48,19 @@ services:
 #    networks:
 #      - arcgis.net
 
-#
-#  datastore:
-#    container_name: datastore
-#    build: datastore
-#    image: geoceg/datastore
-#    ports:
-#      - "2443:2443"
-#    networks:
-#      - arcgis.net
+
+  datastore:
+    container_name: datastore
+    build: datastore
+    image: geoceg/datastore
+    environment:
+      AGS_USER: ${ARCGIS_USERNAME}
+      AGS_PASSWORD: ${ARCGIS_PASSWORD}
+      AGS_DOMAIN: ${ARCGIS_DOMAIN}
+    ports:
+      - "2443:2443"
+    networks:
+      - arcgis.net
 
 
 networks:
