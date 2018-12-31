@@ -32,6 +32,7 @@ services:
       - arcgis.net
     depends_on:
       - server
+    restart: on-failure
 
 
 #  web-adaptor:
